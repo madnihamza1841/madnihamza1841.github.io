@@ -1,7 +1,29 @@
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
-import { profile, experience, projects, skills, coreSkills, education, languages } from '../data/content';
+import { profile, experience, projects, skills, coreSkills, education, letters, inlineLinks } from '../data/content';
 import { useRepos } from '../lib/github';
+
+// Renders bullet text, turning known phrases (e.g. "OpenEdX") into links.
+function linkify(text: string) {
+  const terms = Object.keys(inlineLinks);
+  if (terms.length === 0) return text;
+  const re = new RegExp(`(${terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+  return text.split(re).map((part, i) =>
+    inlineLinks[part] ? (
+      <a
+        key={i}
+        href={inlineLinks[part]}
+        target="_blank"
+        rel="noreferrer"
+        className="text-[var(--color-accent-soft)] hover:text-[var(--color-ink)] underline underline-offset-2"
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+}
 
 export default function Home() {
   const repos = useRepos();
@@ -78,15 +100,62 @@ export default function Home() {
                     ) : (
                       job.company
                     )}
+                    {job.type && <span className="text-[var(--color-faint)] font-normal"> · {job.type}</span>}
                   </h3>
                   <ul className="mt-3 space-y-2.5">
                     {job.points.map((pt, i) => (
                       <li key={i} className="text-[var(--color-muted)] text-[15px] leading-relaxed flex gap-3">
                         <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shrink-0" />
-                        <span>{pt}</span>
+                        <span>{linkify(pt)}</span>
                       </li>
                     ))}
                   </ul>
+                  {job.subs && (
+                    <div className="mt-5 space-y-4 border-l border-[var(--color-line)] pl-5">
+                      {job.subs.map((s) => (
+                        <div key={s.name}>
+                          <p className="text-[15px] font-medium text-[var(--color-ink)]">
+                            {s.link ? (
+                              <a href={s.link} target="_blank" rel="noreferrer" className="hover:text-[var(--color-accent-soft)] transition-colors inline-flex items-center gap-1">
+                                {s.name}<i className="ti ti-external-link text-xs" />
+                              </a>
+                            ) : (
+                              s.name
+                            )}
+                            {s.role && <span className="text-[var(--color-faint)] font-normal"> · {s.role}</span>}
+                          </p>
+                          <ul className="mt-2 space-y-1.5">
+                            {s.points.map((pt, i) => (
+                              <li key={i} className="text-[var(--color-muted)] text-sm leading-relaxed flex gap-3">
+                                <span className="mt-[7px] w-1 h-1 rounded-full bg-[var(--color-faint)] shrink-0" />
+                                <span>{linkify(pt)}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Education */}
+        <section id="education" className="py-16 border-t border-[var(--color-line)]">
+          <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase mb-10">Education</h2>
+          <div className="space-y-8">
+            {education.map((e) => (
+              <div key={e.school} className="grid sm:grid-cols-[160px_1fr] gap-3 sm:gap-8">
+                <div className="text-sm text-[var(--color-faint)]">
+                  <p>{e.period}</p>
+                  <p className="mt-0.5">{e.location}</p>
+                </div>
+                <div>
+                  <h3 className="text-base font-medium text-[var(--color-ink)]">{e.degree}</h3>
+                  <p className="text-sm text-[var(--color-muted)] mt-0.5">{e.school}</p>
+                  <p className="text-sm text-[var(--color-faint)] mt-1.5">{e.detail}</p>
                 </div>
               </div>
             ))}
@@ -181,25 +250,48 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Education */}
-        <section id="education" className="py-16 border-t border-[var(--color-line)]">
-          <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase mb-10">Education</h2>
-          <div className="space-y-8">
-            {education.map((e) => (
-              <div key={e.school} className="grid sm:grid-cols-[160px_1fr] gap-3 sm:gap-8">
-                <div className="text-sm text-[var(--color-faint)]">
-                  <p>{e.period}</p>
-                  <p className="mt-0.5">{e.location}</p>
-                </div>
-                <div>
-                  <h3 className="text-base font-medium text-[var(--color-ink)]">{e.degree}</h3>
-                  <p className="text-sm text-[var(--color-muted)] mt-0.5">{e.school}</p>
-                  <p className="text-sm text-[var(--color-faint)] mt-1.5">{e.detail}</p>
+        {/* Experience letters */}
+        <section id="letters" className="py-16 border-t border-[var(--color-line)]">
+          <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase mb-10">Experience letters</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {letters.map((l) => (
+              <div key={l.org} className="rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] overflow-hidden flex flex-col">
+                <a
+                  href={`${import.meta.env.BASE_URL}${l.file}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative block bg-white"
+                  aria-label={`Open ${l.org} experience letter`}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}${l.preview}`}
+                    alt={`${l.org} experience letter, first page`}
+                    className="w-full aspect-[3/4] object-cover object-top border-b border-[var(--color-line)]"
+                    loading="lazy"
+                  />
+                  <span className="absolute inset-0 grid place-items-center bg-black/0 group-hover:bg-black/40 transition-colors">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1.5 text-white text-sm bg-[var(--color-accent)] px-3 py-1.5 rounded-lg">
+                      <i className="ti ti-eye" /> View
+                    </span>
+                  </span>
+                </a>
+                <div className="p-4 flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-[var(--color-ink)] truncate">{l.org}</p>
+                    <p className="text-xs text-[var(--color-faint)] truncate">{l.role}</p>
+                  </div>
+                  <a
+                    href={`${import.meta.env.BASE_URL}${l.file}`}
+                    download
+                    className="shrink-0 grid place-items-center w-9 h-9 rounded-lg border border-[var(--color-line)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-ink)] transition-colors"
+                    aria-label={`Download ${l.org} experience letter`}
+                  >
+                    <i className="ti ti-download text-base" />
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-sm text-[var(--color-faint)]">Languages: {languages.join(' · ')}</p>
         </section>
       </main>
 

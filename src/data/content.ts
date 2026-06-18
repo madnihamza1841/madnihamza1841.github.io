@@ -14,13 +14,27 @@ export const profile = {
     "Data Science master's student with 5+ years in software engineering and data analytics. I build BI dashboards, run complex analysis, and automate data pipelines with Python, SQL and Power BI — with a track record of turning data into better decisions.",
 };
 
+export interface SubRole {
+  name: string;
+  role?: string;
+  link?: string;
+  points: string[];
+}
+
+// Phrases inside experience bullet text that should render as links.
+export const inlineLinks: Record<string, string> = {
+  OpenEdX: 'https://github.com/edly-io/edx-platform',
+};
+
 export interface Job {
   role: string;
   company: string;
+  type?: string;
   location: string;
   period: string;
   points: string[];
   link?: string;
+  subs?: SubRole[];
 }
 
 export const experience: Job[] = [
@@ -28,19 +42,55 @@ export const experience: Job[] = [
     role: 'Software Engineer',
     company: 'Arbisoft Ltd.',
     location: 'Remote, USA',
-    period: '06/2021 – 03/2026',
+    period: 'Jun 2021 – Mar 2026',
     points: [
       'Led a team of 30 to build a custom CRM and customer portal for a Houston-based event-management unicorn — streamlining operations and saving the client $400,000 annually by cutting SaaS reliance.',
       'Created an AI-driven meeting-scheduling service integrated with Supercal.com algorithms to enhance email-based meeting management.',
       'Built an automation-testing pipeline for Edly.io (OpenEdX): Django unit tests, Selenium frontend automation, JMeter/Locust stress testing, and GitHub Actions running tests per release.',
       'Built and maintained internal tooling, GUI components and dashboards to support team workflows.',
     ],
+    subs: [
+      {
+        name: 'Supercal.com',
+        role: 'Senior Software Engineer',
+        link: 'https://supercal.com',
+        points: [
+          "Created an AI-powered meeting-scheduling service that plugs into Supercal.com's algorithm to provide a conversational layer inside your email threads — scheduling and managing meetings automatically.",
+        ],
+      },
+      {
+        name: "Walter's Wedding Estates",
+        role: 'Lead Software Engineer',
+        points: [
+          'Led the team of 30 that developed a customised CRM and customer portal for a unicorn in the event-management business in Texas/Houston, managing the entire company and its subsidiaries.',
+          'The platform saved the client $400,000 yearly on SaaS tools and digitised many of their existing flows.',
+        ],
+      },
+      {
+        name: 'Waltly.net',
+        role: 'Lead Software Engineer',
+        points: [
+          'Developed the backend for a 2D and 3D event-diagramming tool for a unicorn client to replace their existing tool, Waltly.net.',
+          'The platform saved the client an annual subscription cost of $72,000.',
+        ],
+      },
+      {
+        name: 'Edly.io',
+        role: 'Full Stack Engineer',
+        link: 'https://edly.io',
+        points: [
+          'Edly is an OpenEdX-based learning-management platform offering a full package of services to educational and training institutes.',
+          'Worked as a full-stack developer specialising in Django, DRF and React.',
+        ],
+      },
+    ],
   },
   {
     role: 'Senior Product Executive',
     company: 'PakWheels.com',
+    type: 'Full-time',
     location: 'Lahore, Pakistan',
-    period: '06/2020 – 06/2021',
+    period: 'Jun 2020 – Jun 2021',
     points: [
       'Increased daily listings by 600% and revenue by 250% in one year.',
       'Built Power BI dashboards tracking daily key metrics and digitised event-based tracking in Google Analytics and Hotjar.',
@@ -48,14 +98,48 @@ export const experience: Job[] = [
     ],
   },
   {
-    role: 'Data Analyst (Freelance)',
-    company: 'OddyLabs',
-    location: 'Remote',
-    period: '05/2018 – 06/2019',
+    role: 'Data Analyst',
+    company: 'Oddy Labs',
+    type: 'Part-time',
+    location: 'India · Remote',
+    period: 'May 2018 – Jun 2019',
     link: 'https://www.oddylabs.com/',
     points: [
-      'Worked on data processing, data science and deep learning projects for clients.',
+      'Delivered data-processing, data-science and deep-learning projects remotely:',
+      'Statistical machine-learning projects on the MNIST and CIFAR-100 datasets.',
+      'Trained convolutional neural networks using TensorFlow and Scikit-learn.',
+      'Built a cross-view image-retrieval system using satellite and street-view image classification.',
+      'Data visualisation with Tableau, Power BI, RStudio, Matplotlib and ggplot.',
     ],
+  },
+];
+
+export interface Letter {
+  org: string;
+  role: string;
+  preview: string;
+  file: string;
+}
+
+// Experience letters — preview images render from public/experience-letters/.
+export const letters: Letter[] = [
+  {
+    org: 'Arbisoft LLC',
+    role: 'Experience certificate',
+    preview: 'experience-letters/arbisoft-llc.png',
+    file: 'experience-letters/arbisoft-llc.pdf',
+  },
+  {
+    org: 'Arbisoft Ltd.',
+    role: 'Full-time permanent employee',
+    preview: 'experience-letters/arbisoft-ltd.png',
+    file: 'experience-letters/arbisoft-ltd.pdf',
+  },
+  {
+    org: 'PakWheels.com',
+    role: 'Work experience certificate',
+    preview: 'experience-letters/pakwheels.png',
+    file: 'experience-letters/pakwheels.jpg',
   },
 ];
 
@@ -208,8 +292,6 @@ export const education = [
     detail: 'Machine Learning, Data Mining, Computer Vision, Algorithms, Business Intelligence.',
   },
 ];
-
-export const languages = ['English', 'German'];
 
 export const excludeRepos = new Set<string>([
   'Supercal-Conversational',

@@ -17,9 +17,9 @@ export default function Nav({ showSections = true }: { showSections?: boolean })
         <div className="flex items-center gap-5 text-sm text-[var(--color-muted)]">
           {showSections && (
             <>
-              <a href="/#work" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Work</a>
-              <a href="/#experience" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Experience</a>
-              <a href="/#skills" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Skills</a>
+              <a href="#work" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Work</a>
+              <a href="#experience" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Experience</a>
+              <a href="#skills" className="hidden sm:inline hover:text-[var(--color-ink)] transition-colors">Skills</a>
             </>
           )}
           <a

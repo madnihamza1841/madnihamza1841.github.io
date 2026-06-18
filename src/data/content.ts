@@ -7,8 +7,8 @@ export const profile = {
   github: 'https://github.com/madnihamza1841',
   githubUser: 'madnihamza1841',
   linkedin: 'https://www.linkedin.com/in/muhammad-hamza-madni/',
-  cv: '/Hamza_Madni_CV.pdf',
-  photo: '/profile.png',
+  cv: `${import.meta.env.BASE_URL}Hamza_Madni_CV.pdf`,
+  photo: `${import.meta.env.BASE_URL}profile.png`,
   tagline: "Hi, I'm Hamza — I build data products and the tools that run them.",
   summary:
     "Data Science master's student with 5+ years in software engineering and data analytics. I build BI dashboards, run complex analysis, and automate data pipelines with Python, SQL and Power BI — with a track record of turning data into better decisions.",

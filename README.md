@@ -1,14 +1,14 @@
-# my-portfolio
+# madnihamza1841.github.io
 
 Personal portfolio for Hamza Madni — React + Vite + Tailwind CSS.
 
-Live: https://madnihamza1841.github.io/my-portfolio/
+Live: https://madnihamza1841.github.io/
 
 ## Develop
 
 ```bash
 npm install
-npm run dev        # http://localhost:5174/my-portfolio/
+npm run dev        # http://localhost:5174/
 ```
 
 ## Deploy

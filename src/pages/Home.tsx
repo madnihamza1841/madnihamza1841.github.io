@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
-import { profile, experience, projects, skills, coreSkills, education, letters, inlineLinks } from '../data/content';
+import { profile, experience, projects, skills, coreSkills, education, certifications, letters, inlineLinks } from '../data/content';
 import { useRepos } from '../lib/github';
 
 // Renders bullet text, turning known phrases (e.g. "OpenEdX") into links.
@@ -46,7 +46,7 @@ export default function Home() {
             {profile.summary}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#work" className="rounded-lg bg-[var(--color-accent)] text-white text-sm px-5 py-2.5 hover:opacity-90 transition-opacity">
+            <a href="#projects" className="rounded-lg bg-[var(--color-accent)] text-white text-sm px-5 py-2.5 hover:opacity-90 transition-opacity">
               View my work
             </a>
             <a href={profile.cv} target="_blank" rel="noreferrer" className="rounded-lg border border-[var(--color-line)] text-[var(--color-ink)] text-sm px-5 py-2.5 inline-flex items-center gap-2 hover:border-[var(--color-accent)] transition-colors">
@@ -162,10 +162,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Selected work */}
-        <section id="work" className="py-16 border-t border-[var(--color-line)]">
+        {/* Projects */}
+        <section id="projects" className="py-16 border-t border-[var(--color-line)]">
           <div className="flex items-end justify-between mb-10">
-            <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase">Selected work</h2>
+            <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase">Projects</h2>
             <Link to="/work" className="text-sm text-[var(--color-accent-soft)] hover:text-[var(--color-ink)] transition-colors inline-flex items-center gap-1">
               All projects <i className="ti ti-arrow-right" />
             </Link>
@@ -244,6 +244,50 @@ export default function Home() {
                   {s.items.map((it) => (
                     <span key={it} className="text-[13px] text-[var(--color-muted)] border border-[var(--color-line)] rounded-md px-2.5 py-1">{it}</span>
                   ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Certifications */}
+        <section id="certifications" className="py-16 border-t border-[var(--color-line)]">
+          <h2 className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase mb-10">Certifications</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certifications.map((c) => (
+              <div key={c.name} className="rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] overflow-hidden flex flex-col">
+                <a
+                  href={`${import.meta.env.BASE_URL}${c.file}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative block bg-white p-2"
+                  aria-label={`Open ${c.name} certificate`}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}${c.preview}`}
+                    alt={`${c.name} certificate`}
+                    className="w-full aspect-[4/3] object-contain"
+                    loading="lazy"
+                  />
+                  <span className="absolute inset-0 grid place-items-center bg-black/0 group-hover:bg-black/40 transition-colors">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity inline-flex items-center gap-1.5 text-white text-sm bg-[var(--color-accent)] px-3 py-1.5 rounded-lg">
+                      <i className="ti ti-eye" /> View
+                    </span>
+                  </span>
+                </a>
+                <div className="p-4 flex items-center justify-between gap-3 border-t border-[var(--color-line)]">
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-[var(--color-ink)] truncate" title={c.name}>{c.name}</p>
+                    <p className="text-xs text-[var(--color-faint)] truncate">{c.issuer}</p>
+                  </div>
+                  <a
+                    href={`${import.meta.env.BASE_URL}${c.file}`}
+                    download
+                    className="shrink-0 grid place-items-center w-9 h-9 rounded-lg border border-[var(--color-line)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-ink)] transition-colors"
+                    aria-label={`Download ${c.name} certificate`}
+                  >
+                    <i className="ti ti-download text-base" />
+                  </a>
                 </div>
               </div>
             ))}

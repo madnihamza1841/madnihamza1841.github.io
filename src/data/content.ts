@@ -114,6 +114,71 @@ export const experience: Job[] = [
   },
 ];
 
+export interface Cert {
+  name: string;
+  issuer: string;
+  preview: string;
+  file: string;
+}
+
+// Certificates — preview images render from public/certifications/.
+export const certifications: Cert[] = [
+  {
+    name: 'Deep Learning for Industry',
+    issuer: 'Educative',
+    preview: 'certifications/deep-learning.png',
+    file: 'certifications/deep-learning.pdf',
+  },
+  {
+    name: 'Google Analytics for Beginners',
+    issuer: 'Google Analytics Academy',
+    preview: 'certifications/google-analytics.png',
+    file: 'certifications/google-analytics.pdf',
+  },
+  {
+    name: 'Introduction to Data Studio',
+    issuer: 'Google Analytics Academy',
+    preview: 'certifications/data-studio.png',
+    file: 'certifications/data-studio.pdf',
+  },
+  {
+    name: 'Business Ethics: Compliance & Confidentiality',
+    issuer: 'ilmX',
+    preview: 'certifications/business-ethics.png',
+    file: 'certifications/business-ethics.pdf',
+  },
+  {
+    name: 'Information Security Essentials',
+    issuer: 'ilmX',
+    preview: 'certifications/info-security.png',
+    file: 'certifications/info-security.pdf',
+  },
+  {
+    name: 'Mental Wellbeing for Everyone',
+    issuer: 'ilmX',
+    preview: 'certifications/mental-wellbeing.png',
+    file: 'certifications/mental-wellbeing.pdf',
+  },
+  {
+    name: 'Preventing Workplace Harassment',
+    issuer: 'ilmX',
+    preview: 'certifications/harassment.png',
+    file: 'certifications/harassment.pdf',
+  },
+  {
+    name: 'Reducing Your Environmental Footprint',
+    issuer: 'ilmX',
+    preview: 'certifications/environmental-footprint.png',
+    file: 'certifications/environmental-footprint.pdf',
+  },
+  {
+    name: 'Workplace Safety and Hygiene',
+    issuer: 'ilmX',
+    preview: 'certifications/workplace-safety.png',
+    file: 'certifications/workplace-safety.pdf',
+  },
+];
+
 export interface Letter {
   org: string;
   role: string;

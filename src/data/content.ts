@@ -308,6 +308,118 @@ export const studies: Record<
   },
 };
 
+export interface MoreProject {
+  name: string;
+  period: string;
+  summary: string;
+  points: string[];
+  tags: string[];
+}
+
+// University & personal projects — shown on the /work page under "More projects".
+export const moreProjects: MoreProject[] = [
+  {
+    name: 'HR Data Analytics',
+    period: 'Mar 2020 – May 2020',
+    summary: 'Predicting employee-retention risk from HR records and Big Five personality results.',
+    points: [
+      'Analysed company HR records alongside Big Five test results to surface the drivers of weak employee retention.',
+      'Used statistical analysis and clustering algorithms to segment employees and recommend targeted retention measures.',
+    ],
+    tags: ['Clustering', 'Statistical analysis'],
+  },
+  {
+    name: 'How Well Am I Driving',
+    period: 'Mar 2019 – May 2020',
+    summary: 'A driving-quality rating system for the transport industry using camera feeds and car-sensor data.',
+    points: [
+      'Built the data-collection pipeline: captured timestamped car-sensor readings via a Comma AI Panda device and decoded them with a Python script.',
+      'Plotted and analysed the decoded sensor readings in MATLAB to feed the deep-learning rating models.',
+    ],
+    tags: ['Python', 'MATLAB', 'Sensor data'],
+  },
+  {
+    name: 'PRECON Short-Term Load Forecasting',
+    period: 'Feb 2020 – May 2020',
+    summary: 'Forecasting household electricity load from one-second smart-meter data.',
+    points: [
+      'Trained models to predict future hourly load for houses from one-second-granularity smart-meter consumption data.',
+      'Built an additional model to estimate the number of occupants in a house from its power-consumption patterns.',
+    ],
+    tags: ['Time-series forecasting', 'Machine learning'],
+  },
+  {
+    name: "Sarcasm Detection using Google's Word2Vec",
+    period: 'Apr 2020',
+    summary: "Detecting sarcasm in news headlines using Google's Word2Vec embeddings.",
+    points: [
+      "Transformed news headlines into vectors using Google's 300-dimensional Word2Vec representation.",
+      'Trained and compared logistic regression, K-nearest neighbours and perceptron models — multinomial logistic regression performed best.',
+    ],
+    tags: ['Word2Vec', 'NLP', 'Classification'],
+  },
+  {
+    name: 'Sentiment Classification',
+    period: 'Apr 2020',
+    summary: 'Sentiment classification on the Twitter US Airline dataset.',
+    points: [
+      'Implemented multinomial logistic regression from scratch (softmax, cross-entropy loss, mini-batch gradient descent).',
+      'Compared the results against a Naive Bayes classifier on labelled tweets.',
+    ],
+    tags: ['NLP', 'Logistic regression', 'Naive Bayes'],
+  },
+  {
+    name: 'HumNava',
+    period: 'Aug 2019 – Jan 2020',
+    summary: 'An accessibility app for hearing-impaired students at Hamza Foundation School.',
+    points: [
+      'Designed an application that translates Pakistan Sign Language to English and back using direct mapping.',
+      'Added a texting feature so students could communicate within the app.',
+    ],
+    tags: ['Accessibility', 'Mobile app'],
+  },
+  {
+    name: 'SAMSUNG vs HAIER Retail Analytics',
+    period: 'Sep 2019 – Dec 2019',
+    summary: 'Comparative retail analysis of SAMSUNG and HAIER outlets.',
+    points: [
+      'Compared the two brands across brand positioning, online-marketing campaigns and retail mixes.',
+      'Produced business-analytics insights to inform retail strategy.',
+    ],
+    tags: ['Business analytics', 'Market research'],
+  },
+  {
+    name: 'Airline Database Management System',
+    period: 'Oct 2019 – Nov 2019',
+    summary: 'A relational database for airline operations.',
+    points: [
+      'Designed an SQL schema with multiple entities and relationships.',
+      'Implemented it in MySQL and populated it with data for user testing.',
+    ],
+    tags: ['MySQL', 'Database design'],
+  },
+  {
+    name: 'Data Analytics on Fish Orders Dataset',
+    period: 'Aug 2019 – Sep 2019',
+    summary: 'Order and user-behaviour analysis for fish vendors in Pakistan.',
+    points: [
+      'Analysed online order placements and user behaviour for fish vendors across Pakistan.',
+      'Proposed targeted marketing strategies for Android vs iPhone users by geographic location.',
+    ],
+    tags: ['Data analysis', 'Marketing analytics'],
+  },
+  {
+    name: 'EDU-GATE',
+    period: 'Dec 2018 – May 2019',
+    summary: 'An Android marketplace connecting students with home tutors.',
+    points: [
+      'Built an Android app linking students and home tutors.',
+      'Gave a central administrator control over all student–tutor interactions and profiles.',
+    ],
+    tags: ['Android', 'Mobile app'],
+  },
+];
+
 // Headline competency areas shown as a widget above the detailed skill groups.
 export const coreSkills = [
   { label: 'Software Engineering', icon: 'code' },

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
-import { projects, studies } from '../data/content';
+import { projects, studies, moreProjects } from '../data/content';
 
 export default function Work() {
   useEffect(() => {
@@ -56,6 +56,35 @@ export default function Work() {
             );
           })}
         </div>
+
+        <section className="mt-16 border-t border-[var(--color-line)] pt-12">
+          <h2 className="text-lg font-medium text-[var(--color-ink)]">More projects</h2>
+          <p className="mt-2 text-sm text-[var(--color-muted)]">University and personal projects from my time at LUMS.</p>
+          <div className="mt-8 grid sm:grid-cols-2 gap-4">
+            {moreProjects.map((p) => (
+              <div key={p.name} className="rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] p-5">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-base font-medium text-[var(--color-ink)]">{p.name}</h3>
+                  <span className="shrink-0 text-xs text-[var(--color-faint)]">{p.period}</span>
+                </div>
+                <p className="mt-2 text-sm text-[var(--color-muted)] leading-relaxed">{p.summary}</p>
+                <ul className="mt-3 space-y-1.5">
+                  {p.points.map((pt, i) => (
+                    <li key={i} className="text-sm text-[var(--color-muted)] leading-relaxed flex gap-2.5">
+                      <span className="mt-[7px] w-1 h-1 rounded-full bg-[var(--color-faint)] shrink-0" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {p.tags.map((t) => (
+                    <span key={t} className="text-xs text-[var(--color-muted)] border border-[var(--color-line)] rounded-md px-2 py-0.5">{t}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </>
   );

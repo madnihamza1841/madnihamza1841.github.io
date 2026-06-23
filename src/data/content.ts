@@ -9,9 +9,9 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/muhammad-hamza-madni/',
   cv: `${import.meta.env.BASE_URL}Hamza_Madni_CV.pdf`,
   photo: `${import.meta.env.BASE_URL}profile.png`,
-  tagline: "Hi, I'm Hamza — I build data products and the tools that run them.",
+  tagline: "I architect data-driven systems that empower enterprises to scale analytics and automate critical operations.",
   summary:
-    "Data Science master's student with 5+ years in software engineering and data analytics. I build BI dashboards, run complex analysis, and automate data pipelines with Python, SQL and Power BI — with a track record of turning data into better decisions.",
+    "Senior Software Engineer with 5+ years designing and deploying production data systems. Specialized in full-stack data architecture—from backend engineering and resilient ETL pipelines to advanced analytics and business intelligence. Track record of building solutions that reduce operational costs by millions, accelerate time-to-insight, and transform data into competitive advantage.",
 };
 
 export interface SubRole {

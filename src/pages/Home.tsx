@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
+import Contributions from '../components/Contributions';
 import { profile, experience, projects, skills, coreSkills, education, certifications, letters, inlineLinks } from '../data/content';
 import { useRepos } from '../lib/github';
 
@@ -196,9 +197,12 @@ export default function Home() {
             })}
           </div>
 
+          <p className="mt-12 mb-4 text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase">GitHub activity</p>
+          <Contributions />
+
           {repos.length > 0 && (
             <>
-              <div className="mt-12 mb-4 flex items-center justify-between">
+              <div className="mt-8 mb-4 flex items-center justify-between">
                 <p className="text-[var(--color-faint)] text-xs tracking-[0.14em] uppercase">All GitHub repositories</p>
                 <span className="text-xs text-[var(--color-faint)]">{repos.length} repos</span>
               </div>

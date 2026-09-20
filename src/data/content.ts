@@ -39,6 +39,17 @@ export interface Job {
 
 export const experience: Job[] = [
   {
+    role: 'Working Student Software Engineer',
+    company: 'Siemens Energy',
+    type: 'Part-time',
+    location: 'Erlangen, Bavaria, Germany',
+    period: 'Aug 2026 – Present',
+    points: [
+      'Standardizing the toolchain used for the HVDC systems team to improve workflow consistency and reduce integration friction.',
+      'Designing and implementing a centralized database to manage data flow between multiple tools, enabling seamless data exchange across the HVDC engineering workflow.',
+    ],
+  },
+  {
     role: 'Software Engineer',
     company: 'Arbisoft Ltd.',
     location: 'Remote, USA',
